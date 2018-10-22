@@ -15,7 +15,6 @@ def login(request):
 
     user=User.objects.get(email=request.POST['email'])
 
-    request.session['userlevel']=user.userlevel
     request.session['email']=request.POST['email']
 
     return redirect('/wishes')
