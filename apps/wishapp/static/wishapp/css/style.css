@@ -1,0 +1,58 @@
+form{
+    width: 40%;
+    height:200px;
+}
+.login{
+    margin-left: 500px;
+    vertical-align: top;
+    margin-top: -400px;
+}
+form:first-of-type{
+    margin-left: 10%;
+}
+input{
+    display: block;
+}
+.errorbox{
+    width: 400px;
+    border: 1px solid black;
+    margin-left: 750px;
+    height: 400px;
+    margin-top: -200px;
+    color: red;
+
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+.right{
+    display: inline-block;
+    align-content: right;
+    margin-left: 500px;
+}
+.logout{
+    float: right;
+    margin-top: -30px;
+}
+.stats{
+    display: inline-block;
+    float: right;
+}
+.outline{
+    border: 1px solid black;
+    width: 300px;
+    margin-left: 150px;
+    margin-top: 25px;
+}

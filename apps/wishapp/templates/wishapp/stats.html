@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'wishapp/css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <title>wishes</title>
+</head>
+<body>
+    <div class="jumbotron bg-primary">
+        <h1>hello {{user.firstname}} these are your stats! <div class='stats'><button><a href="/logout">Logout</a> </button> <button><a href="/wishes">dashboard</a></button><button><a href="/wishes/new">Make a wish!</a></button></div></h1>
+    </div>
+    <h3>total granted wishes so far for all users: {{grantedwishes.count}}</h3>
+    <p>your granted wishes: {{usergranted.count}}</p>
+    <p>your pending wishes: {{userpending.count}}</p>
+
+</body>
+</html>

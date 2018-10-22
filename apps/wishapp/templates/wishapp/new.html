@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'wishapp/css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <title>new wish</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Hello {{user.firstname}} Make a wish!</h2>
+    </div>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.errors %} class="{{ message.errors }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <div class="outline">
+    <form action="/wishes/new/add" method="post">{% csrf_token %} 
+    <p>I wish for</p>
+    <input type="text" name="item" placeholder="my wish">
+    <p>description</p>
+    <input type="text" name="desc" placeholder="description">
+    <input type="submit" value="submit">
+    <button><a href="/wishes">CANCEL</a></button>
+    </form>
+</div>
+</body>
+</html>

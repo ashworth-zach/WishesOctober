@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'wishapp/css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <title>wishes</title>
+</head>
+<body>
+    <div class="jumbotron bg-primary">
+        <h1>hello {{user.firstname}} <div class='right'><button><a href="/logout">logout</a></button><button><a href="/wishes/stats">stats!</a></button><button><a href="/wishes/new">Make a wish!</a></button></div></h1>
+    </div>
+    <h2 class="text-center">your wishes</h2>
+    <table>
+        <th>item</th>
+        <th>date added</th>
+        <th>actions</th>
+        {%for wish in wishes%}
+        {%if wish.granted is False and user.id is wish.author_id%}
+        <tr>
+            <td>{{wish.item}}</td>
+            <td>{{wish.created_at}}</td>
+            <td><a href="/wishes/remove/{{wish.id}}">remove</a>    |    <a href="/wishes/edit/{{wish.id}}">edit</a>   |   <a href="/wishes/grant/{{wish.id}}">Granted!</a></td>
+        </tr>
+        {%endif%}
+        {%endfor%}
+    </table>
+    <h2 class="text-center">all granted wishes</h2>
+    <table>
+        <th>item</th>
+        <th>wisher</th>
+        <th>date added</th>
+        <th>date granted</th>
+        <th>likes</th>
+        <th>actions</th>
+        {%for wish in wishes%}
+        {%if wish.granted is True%}
+        <tr>
+            <td>{{wish.item}}</td>
+            <td>{{wish.author.firstname}}</td>
+            <td>{{wish.created_at}}</td>
+            <td>{{wish.updated_at | timesince}}</td>
+            <td>{{wish.likes.count}}</td>
+            {%if wish.author_id is user.id or user in wish.likes.all%}
+            <td></td>
+            {%else%}
+            <td><a href="/like/{{wish.id}}/{{user.id}}">LIKE</a></td>
+            {%endif%}
+        </tr>
+        {%endif%}
+        {%endfor%}
+    </table>
+</body>
+</html>
